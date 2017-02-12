@@ -6,6 +6,7 @@ using NLog.AWS.Logger;
 using NLog;
 using System;
 using Newtonsoft.Json;
+using Amazon.Runtime;
 
 namespace Logging
 {
@@ -13,10 +14,10 @@ namespace Logging
     {
         private readonly NLog.ILogger m_Adaptee;
 
-        public LoggingAdaptor(NLog.ILogger adaptee)
+        public LoggingAdaptor(NLog.ILogger adaptee, ConnectionSettings settings)
         {
             m_Adaptee = adaptee;
-            Configure();
+            Configure(settings);
         }
 
         public void Log(LogEntry entry)
@@ -72,23 +73,26 @@ namespace Logging
             return JsonConvert.SerializeObject(logEvent);
         }
 
-        public void Configure()
+        private void Configure(ConnectionSettings settings)
         {
             var config = new LoggingConfiguration();
 
             var consoleTarget = new ColoredConsoleTarget();
             config.AddTarget("console", consoleTarget);
 
+            var cred = new BasicAWSCredentials(settings.AccessKey, settings.AccessSecret);
+
             var awsTarget = new AWSTarget()
             {
-                LogGroup = "",
-                Region = "",
+                LogGroup = settings.LogGroupName,
+                Region = settings.Region,
+                Credentials = cred
             };
 
             config.AddTarget("aws",awsTarget);
 
             config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, consoleTarget));
-            //config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, awsTarget));
+            config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, awsTarget));
 
             m_Adaptee.Factory.Configuration = config;
         }

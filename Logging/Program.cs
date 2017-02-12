@@ -8,8 +8,9 @@ namespace Logging
         static void Main(string[] args)
         {
             var logFact = new NLog.LogFactory().GetCurrentClassLogger();
-            
-            ILogger logging_adapter = new LoggingAdaptor(logFact);
+            var settings = new ConnectionSettings();
+
+            ILogger logging_adapter = new LoggingAdaptor(logFact, settings);
             
             logging_adapter.Log(new LogEntry(Enums.LoggingEventType.Fatal, "test", logFact.Name));
 
