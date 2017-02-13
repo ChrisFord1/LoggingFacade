@@ -1,6 +1,5 @@
-# Recruiter Specific Ignores
+# Specific Ignores
 SearchIndex
-App_Data/recruiter.n2cms.sdf
 App_Data/Temp/
 Logs
 app/LoggingFacade/App_Data/XmlDocument.xml
