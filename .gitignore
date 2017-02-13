@@ -3,7 +3,7 @@ SearchIndex
 App_Data/recruiter.n2cms.sdf
 App_Data/Temp/
 Logs
-app/Recruiter.Web/App_Data/XmlDocument.xml
+app/LoggingFacade/App_Data/XmlDocument.xml
 App_Data/XmlDocument.xml
 XmlDocument.xml
 
