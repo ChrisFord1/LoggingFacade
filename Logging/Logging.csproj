@@ -84,7 +84,7 @@
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="LogEntry.cs" />
     <Compile Include="LogEvent.cs" />
-    <Compile Include="LoggingAdaptor.cs" />
+    <Compile Include="NLogLoggingAdaptor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test.cs" />

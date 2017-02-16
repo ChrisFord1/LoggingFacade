@@ -1,5 +1,4 @@
-﻿using Logging.Interfaces;
-using Logging.Enums;
+﻿using Logging.Enums;
 using NLog.Config;
 using NLog.Targets;
 using NLog.AWS.Logger;
@@ -10,11 +9,11 @@ using Amazon.Runtime;
 
 namespace Logging
 {
-    public class LoggingAdaptor : Interfaces.ILogger
+    public class NLogLoggingAdaptor : Interfaces.ILogger
     {
         private readonly NLog.ILogger m_Adaptee;
 
-        public LoggingAdaptor(NLog.ILogger adaptee, ConnectionSettings settings)
+        public NLogLoggingAdaptor(NLog.ILogger adaptee, ConnectionSettings settings)
         {
             m_Adaptee = adaptee;
             Configure(settings);

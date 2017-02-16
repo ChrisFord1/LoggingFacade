@@ -14,7 +14,7 @@ namespace Logging
             var logFact = new NLog.LogFactory().GetCurrentClassLogger();
             var setting = new ConnectionSettings();
 
-            ILogger logging_adapter = new LoggingAdaptor(logFact, setting);
+            ILogger logging_adapter = new NLogLoggingAdaptor(logFact, setting);
 
             logging_adapter.Log(new LogEntry(Enums.LoggingEventType.Fatal, "test", logFact.Name));
 

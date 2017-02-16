@@ -17,5 +17,18 @@ namespace Logging
         public string LogGroupName { get; set; }
 
         public string LogStreamName { get; set; }
+
+        public ConnectionSettings Configure(string accessKey, string accessSecret, string region, string logGroupName, string logStreamName)
+        {
+            var settings = new ConnectionSettings
+            {
+                AccessKey = accessKey,
+                AccessSecret = accessSecret,
+                Region = region,
+                LogGroupName = logGroupName,
+                LogStreamName = logStreamName
+            };
+            return settings;
+        }
     }
 }

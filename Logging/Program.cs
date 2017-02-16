@@ -1,5 +1,7 @@
-﻿using Logging.Interfaces;
-using System;
+﻿using System;
+using NLog;
+using ILogger = Logging.Interfaces.ILogger;
+using NLog.Fluent;
 
 namespace Logging
 {
@@ -8,9 +10,9 @@ namespace Logging
         static void Main(string[] args)
         {
             var logFact = new NLog.LogFactory().GetCurrentClassLogger();
-            var settings = new ConnectionSettings();
+            var settings = new ConnectionSettings().Configure("","","","","");
 
-            ILogger logging_adapter = new LoggingAdaptor(logFact, settings);
+            ILogger logging_adapter = new NLogLoggingAdaptor(logFact, settings);
             
             logging_adapter.Log(new LogEntry(Enums.LoggingEventType.Fatal, "test", logFact.Name));
 
